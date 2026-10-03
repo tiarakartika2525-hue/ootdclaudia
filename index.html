@@ -1,0 +1,3431 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F:owns — Fashion Made to Fit | Belanja Pakaian Tanpa Bingung Ukuran</title>
+  <meta name="description" content="F:owns menghadirkan inovasi Size Fit, belanja pakaian wanita dan pria minimalis premium tanpa bingung ukuran dengan analisis postur 4 sudut dan data ukuran tubuh.">
+  
+  <!-- Google Fonts: Playfair Display (Editorial Serif) & Plus Jakarta Sans (Modern Clean Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       F:owns DESIGN SYSTEM & CSS VARIABLES
+       Palette: Cream, Beige, White, Light Brown, Dark Brown
+       ========================================================================== */
+    :root {
+      --color-cream-light: #FDFBF7;
+      --color-cream: #F8F4EE;
+      --color-cream-dark: #EFE8DD;
+      
+      --color-beige-subtle: #E8E0D5;
+      --color-beige: #D8CBBC;
+      --color-beige-dark: #C4B29E;
+      
+      --color-white: #FFFFFF;
+      
+      --color-brown-light: #B48D6C;
+      --color-brown-medium: #8C6647;
+      --color-brown-accent: #9A714C;
+      
+      --color-dark-brown: #251B14;
+      --color-dark-espresso: #1A120D;
+      --color-text-main: #2C211A;
+      --color-text-muted: #736458;
+      --color-text-subtle: #98877A;
+      
+      --border-subtle: rgba(140, 102, 71, 0.15);
+      --border-medium: rgba(140, 102, 71, 0.28);
+      --border-light: rgba(0, 0, 0, 0.06);
+
+      --shadow-sm: 0 2px 8px rgba(37, 27, 20, 0.04);
+      --shadow-md: 0 8px 24px rgba(37, 27, 20, 0.07);
+      --shadow-lg: 0 16px 40px rgba(37, 27, 20, 0.10);
+      --shadow-xl: 0 24px 60px rgba(37, 27, 20, 0.14);
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-pill: 9999px;
+
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-normal: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-slow: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+
+      --container-max: 1200px;
+    }
+
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--color-cream-light);
+      color: var(--color-text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      border: none;
+      outline: none;
+      background: none;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ==========================================================================
+       TYPOGRAPHY & UTILITIES
+       ========================================================================== */
+    .heading-serif {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      color: var(--color-dark-brown);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .sub-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-brown-medium);
+      background-color: rgba(180, 141, 108, 0.12);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 16px;
+      border: 1px solid rgba(180, 141, 108, 0.2);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 26px;
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      transition: all var(--transition-normal);
+      text-align: center;
+    }
+
+    .btn-primary {
+      background-color: var(--color-dark-brown);
+      color: var(--color-cream-light);
+      box-shadow: 0 6px 18px rgba(37, 27, 20, 0.15);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-dark-espresso);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(37, 27, 20, 0.22);
+    }
+
+    .btn-secondary {
+      background-color: var(--color-cream);
+      color: var(--color-dark-brown);
+      border: 1px solid var(--border-medium);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--color-beige-subtle);
+      border-color: var(--color-brown-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-accent {
+      background-color: var(--color-brown-accent);
+      color: var(--color-white);
+      box-shadow: 0 6px 16px rgba(154, 113, 76, 0.25);
+    }
+
+    .btn-accent:hover {
+      background-color: var(--color-brown-medium);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       1. STICKY NAVBAR
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(253, 251, 247, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: all var(--transition-normal);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+
+    .brand-logo {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--color-dark-brown);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .brand-title span {
+      color: var(--color-brown-accent);
+    }
+
+    .brand-subtitle {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--color-text-subtle);
+      margin-top: 3px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.94rem;
+      font-weight: 500;
+      color: var(--color-text-main);
+      position: relative;
+      padding: 6px 0;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: var(--color-brown-accent);
+      transition: width var(--transition-fast);
+      border-radius: 2px;
+    }
+
+    .nav-link:hover {
+      color: var(--color-brown-medium);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cart-trigger-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 18px;
+      background-color: var(--color-cream);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-pill);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--color-dark-brown);
+      transition: all var(--transition-fast);
+      position: relative;
+    }
+
+    .cart-trigger-btn:hover {
+      background-color: var(--color-beige-subtle);
+      border-color: var(--color-brown-light);
+      transform: translateY(-1px);
+    }
+
+    .cart-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 6px;
+      background-color: var(--color-dark-brown);
+      color: var(--color-cream-light);
+      font-size: 0.76rem;
+      font-weight: 700;
+      border-radius: var(--radius-pill);
+      transition: transform var(--transition-fast);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .mobile-menu-btn span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: var(--color-dark-brown);
+      border-radius: 2px;
+      transition: all var(--transition-fast);
+    }
+
+    /* Mobile Drawer Menu */
+    .mobile-nav-drawer {
+      display: none;
+      position: fixed;
+      top: 76px;
+      left: 0;
+      right: 0;
+      background: var(--color-cream-light);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 24px;
+      box-shadow: var(--shadow-lg);
+      z-index: 999;
+    }
+
+    .mobile-nav-drawer.active {
+      display: block;
+      animation: fadeInDown 0.3s ease;
+    }
+
+    .mobile-nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .mobile-nav-links a {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--color-dark-brown);
+    }
+
+    /* ==========================================================================
+       2. HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      padding: 60px 0 90px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 56px;
+    }
+
+    .hero-content {
+      max-width: 580px;
+    }
+
+    .hero-headline {
+      font-size: clamp(2.4rem, 4.4vw, 3.7rem);
+      margin-bottom: 22px;
+      line-height: 1.15;
+    }
+
+    .hero-description {
+      font-size: 1.12rem;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      margin-bottom: 34px;
+      font-weight: 400;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 38px;
+    }
+
+    .hero-trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 0.85rem;
+      color: var(--color-text-subtle);
+      font-weight: 500;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 24px;
+    }
+
+    .trust-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trust-item svg {
+      color: var(--color-brown-accent);
+    }
+
+    /* Hero Mockup Visual */
+    .hero-mockup-wrapper {
+      position: relative;
+    }
+
+    .mockup-card {
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      padding: 16px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-xl);
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition-normal);
+    }
+
+    .mockup-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .mockup-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px 14px;
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: 14px;
+    }
+
+    .mockup-badge-brand {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-dark-brown);
+      letter-spacing: -0.01em;
+    }
+
+    .mockup-badge-pill {
+      font-size: 0.72rem;
+      font-weight: 600;
+      background-color: rgba(180, 141, 108, 0.15);
+      color: var(--color-brown-medium);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .mockup-image-box {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 1 / 1.05;
+      background-color: var(--color-cream);
+    }
+
+    .mockup-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .mockup-card:hover .mockup-image-box img {
+      transform: scale(1.02);
+    }
+
+    /* Floating Feature Badge */
+    .mockup-floating-card {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      right: 24px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 10px 30px rgba(37, 27, 20, 0.12);
+    }
+
+    .floating-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .floating-title {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--color-brown-medium);
+    }
+
+    .floating-match {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #2E7D32;
+      background: #E8F5E9;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+    }
+
+    .floating-recommendation {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .floating-size-bold {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--color-dark-brown);
+      font-family: var(--font-serif);
+    }
+
+    .floating-meta {
+      font-size: 0.82rem;
+      color: var(--color-text-muted);
+    }
+
+    .mockup-angles-strip {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      margin-top: 14px;
+      padding: 8px 12px;
+      background-color: var(--color-cream);
+      border-radius: var(--radius-sm);
+    }
+
+    .angle-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .angle-tag.active {
+      color: var(--color-brown-medium);
+    }
+
+    /* ==========================================================================
+       3. SECTION KEUNGGULAN ("Satu website, dua pengalaman.")
+       ========================================================================== */
+    .features-section {
+      padding: 90px 0;
+      background-color: var(--color-cream);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .section-header-center {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 56px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3.2vw, 2.7rem);
+      margin-bottom: 14px;
+    }
+
+    .section-subtitle {
+      font-size: 1.08rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-brown-light);
+    }
+
+    .feature-card-number {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-beige);
+      line-height: 1;
+    }
+
+    .feature-icon-box {
+      width: 54px;
+      height: 54px;
+      border-radius: var(--radius-md);
+      background-color: var(--color-cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 22px;
+      border: 1px solid var(--border-subtle);
+      color: var(--color-brown-medium);
+      transition: background-color var(--transition-fast);
+    }
+
+    .feature-card:hover .feature-icon-box {
+      background-color: var(--color-beige-subtle);
+    }
+
+    .feature-title {
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--color-dark-brown);
+      margin-bottom: 12px;
+    }
+
+    .feature-desc {
+      font-size: 0.92rem;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+    }
+
+    /* ==========================================================================
+       4. FITUR SIZE FIT (CORE RECOMMENDATION SYSTEM)
+       ========================================================================== */
+    .sizefit-section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .sizefit-container-card {
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-medium);
+      box-shadow: var(--shadow-lg);
+      padding: 48px;
+      position: relative;
+    }
+
+    .sizefit-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* 4-Direction Photo Upload Area */
+    .upload-section-title {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--color-dark-brown);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .upload-section-subtitle {
+      font-size: 0.88rem;
+      color: var(--color-text-muted);
+      margin-bottom: 20px;
+    }
+
+    .photo-slots-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .photo-slot {
+      position: relative;
+      background: var(--color-cream-light);
+      border: 2px dashed var(--color-beige);
+      border-radius: var(--radius-md);
+      padding: 16px 12px;
+      text-align: center;
+      transition: all var(--transition-fast);
+      cursor: pointer;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .photo-slot:hover {
+      border-color: var(--color-brown-accent);
+      background-color: var(--color-cream);
+    }
+
+    .photo-slot.dragover {
+      border-color: var(--color-brown-medium);
+      background-color: var(--color-beige-subtle);
+      transform: scale(1.02);
+    }
+
+    .slot-input-file {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 5;
+    }
+
+    .slot-empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .slot-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--color-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-brown-medium);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .slot-label {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--color-dark-brown);
+    }
+
+    .slot-hint {
+      font-size: 0.72rem;
+      color: var(--color-text-subtle);
+    }
+
+    .slot-preview-wrapper {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background: var(--color-cream-light);
+      z-index: 6;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .slot-preview-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slot-preview-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(37, 27, 20, 0.85), transparent);
+      padding: 10px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .preview-tag-name {
+      color: var(--color-white);
+      font-size: 0.74rem;
+      font-weight: 600;
+    }
+
+    .slot-remove-btn {
+      background: rgba(255, 255, 255, 0.25);
+      color: var(--color-white);
+      border-radius: var(--radius-pill);
+      padding: 3px 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      backdrop-filter: blur(4px);
+      cursor: pointer;
+      transition: background var(--transition-fast);
+      z-index: 7;
+    }
+
+    .slot-remove-btn:hover {
+      background: #D32F2F;
+    }
+
+    .upload-helper-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--color-cream);
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .helper-text {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+
+    .btn-demo-photos {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--color-brown-medium);
+      background: var(--color-white);
+      border: 1px solid var(--border-medium);
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-demo-photos:hover {
+      background: var(--color-dark-brown);
+      color: var(--color-cream-light);
+    }
+
+    /* Size Fit Measurement Form */
+    .form-group-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .input-field-wrapper {
+      position: relative;
+    }
+
+    .input-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--color-dark-brown);
+      margin-bottom: 6px;
+    }
+
+    .input-control-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-control-box input {
+      width: 100%;
+      background: var(--color-cream-light);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      padding: 12px 48px 12px 16px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-dark-brown);
+      transition: all var(--transition-fast);
+    }
+
+    .input-control-box input:focus {
+      background: var(--color-white);
+      border-color: var(--color-brown-medium);
+      box-shadow: 0 0 0 3px rgba(180, 141, 108, 0.15);
+    }
+
+    .input-unit-tag {
+      position: absolute;
+      right: 14px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-text-subtle);
+      pointer-events: none;
+    }
+
+    /* Fit Style Preferences */
+    .fit-style-group {
+      margin-bottom: 28px;
+    }
+
+    .fit-style-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--color-dark-brown);
+      margin-bottom: 10px;
+    }
+
+    .fit-style-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .fit-radio-card {
+      position: relative;
+    }
+
+    .fit-radio-card input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .fit-radio-content {
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      padding: 12px 10px;
+      text-align: center;
+      background: var(--color-cream-light);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .fit-radio-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--color-dark-brown);
+    }
+
+    .fit-radio-desc {
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+    }
+
+    .fit-radio-card input[type="radio"]:checked + .fit-radio-content {
+      border-color: var(--color-brown-accent);
+      background: var(--color-white);
+      box-shadow: 0 4px 14px rgba(154, 113, 76, 0.18);
+      transform: translateY(-2px);
+    }
+
+    .fit-radio-card input[type="radio"]:checked + .fit-radio-content .fit-radio-title {
+      color: var(--color-brown-accent);
+    }
+
+    /* Result Box */
+    .sizefit-result-container {
+      margin-top: 28px;
+      display: none;
+      animation: fadeInUp 0.4s ease forwards;
+    }
+
+    .result-card-inner {
+      background: linear-gradient(135deg, var(--color-cream) 0%, #F5ECE1 100%);
+      border: 1px solid rgba(180, 141, 108, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-card-inner::after {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(180, 141, 108, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .result-badge-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-brown-medium);
+      margin-bottom: 10px;
+    }
+
+    .result-size-highlight {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--color-dark-brown);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .result-size-highlight span {
+      color: var(--color-brown-accent);
+      background: rgba(255, 255, 255, 0.6);
+      padding: 2px 14px;
+      border-radius: var(--radius-pill);
+      display: inline-block;
+      margin-left: 6px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .result-explanation {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .result-specs-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 12px 0;
+      border-top: 1px dashed var(--border-medium);
+      border-bottom: 1px dashed var(--border-medium);
+      margin-bottom: 18px;
+      font-size: 0.8rem;
+    }
+
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .spec-label {
+      color: var(--color-text-subtle);
+      font-size: 0.72rem;
+    }
+
+    .spec-val {
+      font-weight: 700;
+      color: var(--color-dark-brown);
+    }
+
+    .result-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* AI Disclaimer Note */
+    .ai-disclaimer-note {
+      margin-top: 32px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px 20px;
+      background: var(--color-cream);
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--color-brown-medium);
+    }
+
+    .disclaimer-icon {
+      font-size: 1.2rem;
+      color: var(--color-brown-medium);
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .disclaimer-text {
+      font-size: 0.82rem;
+      color: var(--color-text-muted);
+      line-height: 1.55;
+    }
+
+    .disclaimer-text strong {
+      color: var(--color-dark-brown);
+    }
+
+    /* ==========================================================================
+       5. SHOP SECTION ("Shop F:owns")
+       ========================================================================== */
+    .shop-section {
+      padding: 100px 0;
+      background-color: var(--color-cream-light);
+    }
+
+    .shop-filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: var(--radius-pill);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      background: transparent;
+      border: 1px solid var(--border-medium);
+      transition: all var(--transition-fast);
+    }
+
+    .filter-btn:hover {
+      border-color: var(--color-brown-medium);
+      color: var(--color-dark-brown);
+    }
+
+    .filter-btn.active {
+      background: var(--color-dark-brown);
+      color: var(--color-cream-light);
+      border-color: var(--color-dark-brown);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .product-card {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-medium);
+    }
+
+    .product-media {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      background: var(--color-cream);
+      overflow: hidden;
+    }
+
+    .product-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .product-card:hover .product-media img {
+      transform: scale(1.04);
+    }
+
+    .product-badge-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--color-dark-brown);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .product-fit-notice {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      background: rgba(37, 27, 20, 0.85);
+      backdrop-filter: blur(8px);
+      color: var(--color-cream-light);
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      text-align: center;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .product-fit-notice.show {
+      display: flex;
+    }
+
+    .product-details {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-category {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-subtle);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .product-name {
+      font-size: 1.14rem;
+      font-weight: 700;
+      color: var(--color-dark-brown);
+      margin-bottom: 8px;
+    }
+
+    .product-price {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--color-brown-accent);
+      margin-bottom: 16px;
+    }
+
+    /* Size Selector within Card */
+    .size-selector-label {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--color-text-subtle);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .size-recommended-text {
+      color: var(--color-brown-medium);
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: none;
+    }
+
+    .product-sizes-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .size-chip-btn {
+      width: 36px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--color-text-main);
+      background: var(--color-cream-light);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      position: relative;
+    }
+
+    .size-chip-btn:hover {
+      border-color: var(--color-brown-medium);
+      background: var(--color-white);
+    }
+
+    .size-chip-btn.selected {
+      background: var(--color-dark-brown);
+      color: var(--color-cream-light);
+      border-color: var(--color-dark-brown);
+    }
+
+    .size-chip-btn.recommended {
+      border-color: var(--color-brown-accent);
+      background-color: rgba(180, 141, 108, 0.15);
+      color: var(--color-dark-brown);
+      font-weight: 700;
+    }
+
+    .size-chip-btn.recommended::after {
+      content: '★';
+      position: absolute;
+      top: -5px;
+      right: -3px;
+      font-size: 8px;
+      color: var(--color-brown-accent);
+    }
+
+    .product-card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .btn-add-cart {
+      padding: 10px 14px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      background: var(--color-cream);
+      color: var(--color-dark-brown);
+      border: 1px solid var(--border-medium);
+      transition: all var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-add-cart:hover {
+      background: var(--color-beige-subtle);
+      border-color: var(--color-brown-light);
+    }
+
+    .btn-buy-now {
+      padding: 10px 14px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      background: var(--color-dark-brown);
+      color: var(--color-cream-light);
+      transition: all var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-buy-now:hover {
+      background: var(--color-dark-espresso);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       6. SHOPPING CART (SLIDE-OVER DRAWER)
+       ========================================================================== */
+    .cart-drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(26, 18, 13, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-normal);
+    }
+
+    .cart-drawer-backdrop.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 440px;
+      background: var(--color-cream-light);
+      z-index: 2001;
+      box-shadow: var(--shadow-xl);
+      transform: translateX(100%);
+      transition: transform var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-drawer.active {
+      transform: translateX(0);
+    }
+
+    .cart-drawer-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--color-white);
+    }
+
+    .cart-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--color-dark-brown);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cart-close-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--color-cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--color-dark-brown);
+      cursor: pointer;
+      transition: background var(--transition-fast);
+    }
+
+    .cart-close-btn:hover {
+      background: var(--color-beige);
+    }
+
+    .cart-items-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cart-empty-state {
+      margin: auto 0;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .empty-cart-icon {
+      font-size: 3.5rem;
+      color: var(--color-beige-dark);
+      margin-bottom: 16px;
+    }
+
+    .empty-cart-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-dark-brown);
+      margin-bottom: 8px;
+    }
+
+    .empty-cart-desc {
+      font-size: 0.88rem;
+      color: var(--color-text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* Cart Item Card */
+    .cart-item-card {
+      background: var(--color-white);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .cart-item-thumb {
+      width: 72px;
+      height: 84px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: var(--color-cream);
+      flex-shrink: 0;
+    }
+
+    .cart-item-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cart-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cart-item-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--color-dark-brown);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 2px;
+    }
+
+    .cart-item-size-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--color-brown-medium);
+      background: var(--color-cream);
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 6px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .cart-item-price {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--color-brown-accent);
+    }
+
+    .cart-item-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .cart-item-qty {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-pill);
+      background: var(--color-cream-light);
+      overflow: hidden;
+    }
+
+    .qty-btn {
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--color-dark-brown);
+      cursor: pointer;
+      transition: background var(--transition-fast);
+    }
+
+    .qty-btn:hover {
+      background: var(--color-beige);
+    }
+
+    .qty-number {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0 6px;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .cart-item-delete {
+      font-size: 0.74rem;
+      color: #C62828;
+      background: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      opacity: 0.8;
+      transition: opacity var(--transition-fast);
+    }
+
+    .cart-item-delete:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    /* Cart Footer */
+    .cart-drawer-footer {
+      padding: 24px;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--color-white);
+    }
+
+    .cart-summary-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      color: var(--color-text-muted);
+      margin-bottom: 8px;
+    }
+
+    .cart-summary-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--color-dark-brown);
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+      margin-bottom: 20px;
+    }
+
+    .cart-total-price {
+      font-family: var(--font-serif);
+      color: var(--color-brown-accent);
+      font-size: 1.35rem;
+    }
+
+    /* ==========================================================================
+       7. CHECKOUT PROTOTYPE MODAL
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(26, 18, 13, 0.6);
+      backdrop-filter: blur(6px);
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-container {
+      background: var(--color-cream-light);
+      border-radius: var(--radius-xl);
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 1px solid var(--border-medium);
+      box-shadow: var(--shadow-xl);
+      padding: 32px;
+      position: relative;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .modal-title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-dark-brown);
+    }
+
+    .modal-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--color-cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--color-dark-brown);
+    }
+
+    .checkout-order-summary-box {
+      background: var(--color-white);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .summary-heading {
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-brown-medium);
+      margin-bottom: 12px;
+    }
+
+    .checkout-item-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      margin-bottom: 8px;
+    }
+
+    .checkout-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .checkout-field-full {
+      grid-column: span 2;
+    }
+
+    .checkout-input {
+      width: 100%;
+      background: var(--color-white);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      color: var(--color-dark-brown);
+    }
+
+    .checkout-input:focus {
+      border-color: var(--color-brown-accent);
+      outline: none;
+    }
+
+    .payment-options-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .payment-chip {
+      border: 1px solid var(--border-medium);
+      background: var(--color-white);
+      padding: 8px;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .payment-chip.selected {
+      border-color: var(--color-brown-accent);
+      background: rgba(180, 141, 108, 0.12);
+      color: var(--color-brown-medium);
+    }
+
+    /* Success Order Screen */
+    .order-success-box {
+      text-align: center;
+      padding: 30px 10px;
+      display: none;
+    }
+
+    .success-check-icon {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: #E8F5E9;
+      color: #2E7D32;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 20px;
+    }
+
+    /* ==========================================================================
+       8. SECTION TENTANG (ABOUT) & FOOTER
+       ========================================================================== */
+    .about-section {
+      padding: 90px 0;
+      background: var(--color-cream);
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .about-text-content {
+      max-width: 500px;
+    }
+
+    .about-p {
+      font-size: 1rem;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .about-quote {
+      border-left: 3px solid var(--color-brown-accent);
+      padding-left: 20px;
+      font-style: italic;
+      color: var(--color-dark-brown);
+      font-size: 1.05rem;
+      margin-top: 24px;
+    }
+
+    .about-pillars {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .pillar-card {
+      background: var(--color-white);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .pillar-icon {
+      font-size: 1.3rem;
+      color: var(--color-brown-medium);
+      margin-bottom: 8px;
+    }
+
+    .pillar-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-dark-brown);
+      margin-bottom: 4px;
+    }
+
+    .pillar-desc {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+
+    /* Site Footer */
+    .site-footer {
+      background: var(--color-dark-brown);
+      color: var(--color-beige);
+      padding: 70px 0 30px;
+      font-size: 0.9rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      gap: 48px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand-title {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--color-cream-light);
+      margin-bottom: 12px;
+    }
+
+    .footer-desc {
+      color: var(--color-beige-dark);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      max-width: 320px;
+    }
+
+    .footer-col-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-cream-light);
+      margin-bottom: 20px;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links-list a {
+      color: var(--color-beige);
+      transition: color var(--transition-fast);
+    }
+
+    .footer-links-list a:hover {
+      color: var(--color-white);
+    }
+
+    .footer-newsletter-input {
+      display: flex;
+      margin-top: 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      overflow: hidden;
+      padding: 4px;
+    }
+
+    .footer-newsletter-input input {
+      flex: 1;
+      padding: 8px 14px;
+      color: var(--color-white);
+      font-size: 0.85rem;
+    }
+
+    .footer-newsletter-input input::placeholder {
+      color: var(--color-beige-dark);
+    }
+
+    .footer-newsletter-input button {
+      background: var(--color-brown-accent);
+      color: var(--color-white);
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--color-beige-dark);
+      font-size: 0.8rem;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Toast Notification */
+    .toast-notice {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--color-dark-brown);
+      color: var(--color-cream-light);
+      padding: 14px 22px;
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-xl);
+      font-size: 0.9rem;
+      font-weight: 600;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all var(--transition-normal);
+      pointer-events: none;
+    }
+
+    .toast-notice.show {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero-content {
+        max-width: 100%;
+        text-align: center;
+      }
+      .hero-cta-group {
+        justify-content: center;
+      }
+      .hero-trust-badges {
+        justify-content: center;
+      }
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .sizefit-layout {
+        grid-template-columns: 1fr;
+      }
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: flex;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      .sizefit-container-card {
+        padding: 24px;
+      }
+      .photo-slots-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .form-group-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. STICKY NAVBAR
+       ========================================================================== -->
+  <header class="site-header" id="site-header">
+    <div class="container nav-container">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo" aria-label="F:owns Home">
+        <span class="brand-title">F<span>:</span>owns</span>
+        <span class="brand-subtitle">Fashion Made to Fit</span>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#size-fit" class="nav-link">Size Fit</a></li>
+          <li><a href="#shop" class="nav-link">Shop</a></li>
+          <li><a href="#tentang" class="nav-link">Tentang</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions (Cart & Mobile Toggle) -->
+      <div class="nav-actions">
+        <button type="button" class="cart-trigger-btn" id="open-cart-btn" aria-label="Buka Keranjang">
+          <span>🛍 Keranjang</span>
+          <span class="cart-badge" id="cart-badge-count">0</span>
+        </button>
+
+        <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Buka Menu Navigasi">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Nav -->
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+      <ul class="mobile-nav-links">
+        <li><a href="#size-fit" class="mobile-nav-item">Size Fit</a></li>
+        <li><a href="#shop" class="mobile-nav-item">Shop Koleksi</a></li>
+        <li><a href="#tentang" class="mobile-nav-item">Tentang F:owns</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       2. HERO SECTION
+       ========================================================================== -->
+  <section class="hero-section" id="hero">
+    <div class="container hero-grid">
+      <!-- Left Column: Copy & Actions -->
+      <div class="hero-content">
+        <div class="sub-tag">
+          <span>✨ Inovasi Fashion Made to Fit</span>
+        </div>
+        <h1 class="heading-serif hero-headline">
+          Belanja pakaian tanpa bingung ukuran.
+        </h1>
+        <p class="hero-description">
+          F:owns menghadirkan <strong>Size Fit</strong>, fitur yang membantu kalian menentukan ukuran pakaian dengan memasukkan ukuran tubuh dan mengunggah foto dari depan, belakang, samping kanan, dan samping kiri.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#size-fit" class="btn btn-primary" id="hero-cta-btn">
+            Coba Size Fit &rarr;
+          </a>
+          <a href="#shop" class="btn btn-secondary">
+            Lihat Koleksi
+          </a>
+        </div>
+
+        <div class="hero-trust-badges">
+          <div class="trust-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Rekomendasi Presisi</span>
+          </div>
+          <div class="trust-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Analisis 4 Sudut Foto</span>
+          </div>
+          <div class="trust-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Bebas Khawatir Salah Ukuran</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Visual Mockup "F:owns Size Fit" -->
+      <div class="hero-mockup-wrapper">
+        <div class="mockup-card">
+          <div class="mockup-header-bar">
+            <div class="mockup-badge-brand">F:owns Size Fit</div>
+            <div class="mockup-badge-pill">
+              <span>● AI Fitting Mode</span>
+            </div>
+          </div>
+
+          <div class="mockup-image-box">
+            <img src="assets/images/hero.jpg" alt="F:owns Size Fit Mockup Visual" id="hero-mockup-img" onerror="this.src='https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80'">
+            
+            <!-- Floating Recommendation Badge -->
+            <div class="mockup-floating-card">
+              <div class="floating-top">
+                <span class="floating-title">Hasil Prediksi Size Fit</span>
+                <span class="floating-match">98% Match</span>
+              </div>
+              <div class="floating-recommendation">
+                <div class="floating-size-bold" id="hero-badge-size">Size M</div>
+                <div class="floating-meta" id="hero-badge-meta">• Lingkar Dada 92 cm (Gaya Regular)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mockup-angles-strip">
+            <span class="angle-tag active">✓ Depan</span>
+            <span class="angle-tag active">✓ Belakang</span>
+            <span class="angle-tag active">✓ Samping Kanan</span>
+            <span class="angle-tag active">✓ Samping Kiri</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       3. SECTION KEUNGGULAN ("Satu website, dua pengalaman.")
+       ========================================================================== */
+  -->
+  <section class="features-section" id="keunggulan">
+    <div class="container">
+      <div class="section-header-center">
+        <div class="sub-tag">Keunggulan F:owns</div>
+        <h2 class="heading-serif section-title">Satu website, dua pengalaman.</h2>
+        <p class="section-subtitle">Belanja lebih mudah sekaligus mendapatkan rekomendasi ukuran.</p>
+      </div>
+
+      <div class="features-grid">
+        <!-- Card 1 -->
+        <div class="feature-card">
+          <div class="feature-card-number">01</div>
+          <div class="feature-icon-box">📏</div>
+          <h3 class="feature-title">Input ukuran</h3>
+          <p class="feature-desc">Pengguna memasukkan tinggi, berat, lingkar dada, pinggang, dan pinggul dengan parameter yang detail dan mudah.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="feature-card">
+          <div class="feature-card-number">02</div>
+          <div class="feature-icon-box">📸</div>
+          <h3 class="feature-title">4 arah foto</h3>
+          <p class="feature-desc">Pengguna dapat mengunggah foto depan, belakang, samping kanan, dan samping kiri untuk estimasi proporsi tubuh menyeluruh.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="feature-card">
+          <div class="feature-card-number">03</div>
+          <div class="feature-icon-box">✨</div>
+          <h3 class="feature-title">Size Fit</h3>
+          <p class="feature-desc">Sistem memberikan rekomendasi ukuran paling pas secara cerdas berdasarkan data pengguna dan preferensi kenyamanan gaya.</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="feature-card">
+          <div class="feature-card-number">04</div>
+          <div class="feature-icon-box">🛒</div>
+          <h3 class="feature-title">Belanja</h3>
+          <p class="feature-desc">Pengguna dapat memilih produk, ukuran yang disarankan, memasukkan ke keranjang, dan melakukan checkout instan tanpa ragu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. FITUR SIZE FIT
+       ========================================================================== -->
+  <section class="sizefit-section" id="size-fit">
+    <div class="container">
+      <div class="sizefit-container-card">
+        
+        <div class="section-header-center" style="margin-bottom: 40px;">
+          <div class="sub-tag">Teknologi Rekomendasi Presisi</div>
+          <h2 class="heading-serif section-title">F:owns Size Fit</h2>
+          <p class="section-subtitle">Masukkan data postur dan 4 sudut foto tubuhmu untuk rekomendasi ukuran busana paling akurat.</p>
+        </div>
+
+        <form id="sizefit-form" onsubmit="handleSizeFitSubmit(event)">
+          <div class="sizefit-layout">
+            
+            <!-- LEFT COLUMN: 4-Way Photo Upload -->
+            <div class="sizefit-upload-column">
+              <div class="upload-section-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                <span>Unggah 4 Arah Foto Tubuh</span>
+              </div>
+              <p class="upload-section-subtitle">
+                Unggah foto berdiri tegak dari 4 sudut untuk membantu kalibrasi bentuk tubuh secara visual.
+              </p>
+
+              <div class="photo-slots-grid">
+                <!-- Slot 1: Depan -->
+                <div class="photo-slot" id="slot-front" data-slot="front">
+                  <input type="file" class="slot-input-file" accept="image/*" aria-label="Upload Foto Depan" onchange="handlePhotoUpload(event, 'front')">
+                  <div class="slot-empty-state">
+                    <div class="slot-icon">👤</div>
+                    <div class="slot-label">Depan</div>
+                    <div class="slot-hint">Klik / Drag Foto</div>
+                  </div>
+                  <div class="slot-preview-wrapper" id="preview-wrapper-front">
+                    <img src="" alt="Preview Foto Depan" class="slot-preview-img" id="preview-img-front">
+                    <div class="slot-preview-overlay">
+                      <span class="preview-tag-name">Depan ✓</span>
+                      <button type="button" class="slot-remove-btn" onclick="removePhoto('front', event)">Hapus</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Slot 2: Belakang -->
+                <div class="photo-slot" id="slot-back" data-slot="back">
+                  <input type="file" class="slot-input-file" accept="image/*" aria-label="Upload Foto Belakang" onchange="handlePhotoUpload(event, 'back')">
+                  <div class="slot-empty-state">
+                    <div class="slot-icon">🔄</div>
+                    <div class="slot-label">Belakang</div>
+                    <div class="slot-hint">Klik / Drag Foto</div>
+                  </div>
+                  <div class="slot-preview-wrapper" id="preview-wrapper-back">
+                    <img src="" alt="Preview Foto Belakang" class="slot-preview-img" id="preview-img-back">
+                    <div class="slot-preview-overlay">
+                      <span class="preview-tag-name">Belakang ✓</span>
+                      <button type="button" class="slot-remove-btn" onclick="removePhoto('back', event)">Hapus</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Slot 3: Samping Kanan -->
+                <div class="photo-slot" id="slot-right" data-slot="right">
+                  <input type="file" class="slot-input-file" accept="image/*" aria-label="Upload Foto Samping Kanan" onchange="handlePhotoUpload(event, 'right')">
+                  <div class="slot-empty-state">
+                    <div class="slot-icon">👉</div>
+                    <div class="slot-label">Samping Kanan</div>
+                    <div class="slot-hint">Klik / Drag Foto</div>
+                  </div>
+                  <div class="slot-preview-wrapper" id="preview-wrapper-right">
+                    <img src="" alt="Preview Foto Samping Kanan" class="slot-preview-img" id="preview-img-right">
+                    <div class="slot-preview-overlay">
+                      <span class="preview-tag-name">Samping Kanan ✓</span>
+                      <button type="button" class="slot-remove-btn" onclick="removePhoto('right', event)">Hapus</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Slot 4: Samping Kiri -->
+                <div class="photo-slot" id="slot-left" data-slot="left">
+                  <input type="file" class="slot-input-file" accept="image/*" aria-label="Upload Foto Samping Kiri" onchange="handlePhotoUpload(event, 'left')">
+                  <div class="slot-empty-state">
+                    <div class="slot-icon">👈</div>
+                    <div class="slot-label">Samping Kiri</div>
+                    <div class="slot-hint">Klik / Drag Foto</div>
+                  </div>
+                  <div class="slot-preview-wrapper" id="preview-wrapper-left">
+                    <img src="" alt="Preview Foto Samping Kiri" class="slot-preview-img" id="preview-img-left">
+                    <div class="slot-preview-overlay">
+                      <span class="preview-tag-name">Samping Kiri ✓</span>
+                      <button type="button" class="slot-remove-btn" onclick="removePhoto('left', event)">Hapus</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="upload-helper-row">
+                <div class="helper-text">
+                  Tip: Gunakan pakaian pas badan dan pencahayaan terang untuk hasil estimasi visual terbaik.
+                </div>
+                <button type="button" class="btn-demo-photos" onclick="loadDemoPhotos()">
+                  ⚡ Muat Foto Demo
+                </button>
+              </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Measurement Inputs & Fit Preference -->
+            <div class="sizefit-inputs-column">
+              <div class="upload-section-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                <span>Ukuran Tubuh Anda</span>
+              </div>
+              <p class="upload-section-subtitle">
+                Isi data ukuran tubuh dalam satuan centimeter (cm) dan kilogram (kg).
+              </p>
+
+              <!-- Form Inputs -->
+              <div class="form-group-grid">
+                <!-- Tinggi Badan -->
+                <div class="input-field-wrapper">
+                  <label for="input-height" class="input-label">Tinggi Badan</label>
+                  <div class="input-control-box">
+                    <input type="number" id="input-height" min="100" max="230" value="165" required placeholder="Contoh: 165">
+                    <span class="input-unit-tag">cm</span>
+                  </div>
+                </div>
+
+                <!-- Berat Badan -->
+                <div class="input-field-wrapper">
+                  <label for="input-weight" class="input-label">Berat Badan</label>
+                  <div class="input-control-box">
+                    <input type="number" id="input-weight" min="30" max="180" value="55" required placeholder="Contoh: 55">
+                    <span class="input-unit-tag">kg</span>
+                  </div>
+                </div>
+
+                <!-- Lingkar Dada (Primary metric) -->
+                <div class="input-field-wrapper">
+                  <label for="input-bust" class="input-label">Lingkar Dada (Utama)</label>
+                  <div class="input-control-box">
+                    <input type="number" id="input-bust" min="60" max="160" value="92" required placeholder="Contoh: 92">
+                    <span class="input-unit-tag">cm</span>
+                  </div>
+                </div>
+
+                <!-- Lingkar Pinggang -->
+                <div class="input-field-wrapper">
+                  <label for="input-waist" class="input-label">Lingkar Pinggang</label>
+                  <div class="input-control-box">
+                    <input type="number" id="input-waist" min="45" max="160" value="72" required placeholder="Contoh: 72">
+                    <span class="input-unit-tag">cm</span>
+                  </div>
+                </div>
+
+                <!-- Lingkar Pinggul -->
+                <div class="input-field-wrapper" style="grid-column: span 2;">
+                  <label for="input-hips" class="input-label">Lingkar Pinggul</label>
+                  <div class="input-control-box">
+                    <input type="number" id="input-hips" min="60" max="170" value="96" required placeholder="Contoh: 96">
+                    <span class="input-unit-tag">cm</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pilihan Gaya Fit -->
+              <div class="fit-style-group">
+                <span class="fit-style-label">Pilihan Gaya Fit Busana:</span>
+                <div class="fit-style-options">
+                  
+                  <label class="fit-radio-card">
+                    <input type="radio" name="fit_preference" value="regular" checked>
+                    <div class="fit-radio-content">
+                      <span class="fit-radio-title">Regular</span>
+                      <span class="fit-radio-desc">Pas nyaman standar</span>
+                    </div>
+                  </label>
+
+                  <label class="fit-radio-card">
+                    <input type="radio" name="fit_preference" value="loose">
+                    <div class="fit-radio-content">
+                      <span class="fit-radio-title">Loose</span>
+                      <span class="fit-radio-desc">Lebih longgar (+1 size)</span>
+                    </div>
+                  </label>
+
+                  <label class="fit-radio-card">
+                    <input type="radio" name="fit_preference" value="fitted">
+                    <div class="fit-radio-content">
+                      <span class="fit-radio-title">Fitted</span>
+                      <span class="fit-radio-desc">Pas lekuk tubuh (-1 size)</span>
+                    </div>
+                  </label>
+
+                </div>
+              </div>
+
+              <!-- Submit Action Button -->
+              <button type="submit" class="btn btn-primary" id="btn-calculate-size" style="width: 100%; padding: 15px;">
+                <span>Cek Rekomendasi Ukuran ✨</span>
+              </button>
+
+              <!-- Dynamic Result Box -->
+              <div class="sizefit-result-container" id="sizefit-result-box">
+                <div class="result-card-inner">
+                  <div class="result-badge-top">
+                    <span>✨ Rekomendasi F:owns Terkalkulasi</span>
+                  </div>
+                  
+                  <div class="result-size-highlight" id="result-headline-size">
+                    Rekomendasi Size: <span id="recommended-size-pill">M</span>
+                  </div>
+
+                  <p class="result-explanation" id="result-explanation-text">
+                    Berdasarkan lingkar dada <strong>92 cm</strong> dengan gaya <strong>Regular</strong>, ukuran M memberikan proporsi jatuh pakaian paling ideal di badanmu.
+                  </p>
+
+                  <div class="result-specs-row">
+                    <div class="spec-item">
+                      <span class="spec-label">Ukuran Dasar</span>
+                      <span class="spec-val" id="spec-base-size">M</span>
+                    </div>
+                    <div class="spec-item">
+                      <span class="spec-label">Penyesuaian Gaya</span>
+                      <span class="spec-val" id="spec-style-mod">Regular (0)</span>
+                    </div>
+                    <div class="spec-item">
+                      <span class="spec-label">Status Foto</span>
+                      <span class="spec-val" id="spec-photo-status">0/4 Terunggah</span>
+                    </div>
+                  </div>
+
+                  <div class="result-actions">
+                    <button type="button" class="btn btn-accent" id="apply-to-shop-btn" onclick="applySizeToShop()" style="font-size: 0.85rem; padding: 10px 18px;">
+                      Terapkan Ukuran Ini ke Toko 🛍
+                    </button>
+                    <a href="#shop" class="btn btn-secondary" style="font-size: 0.85rem; padding: 10px 18px;">
+                      Lihat Produk &rarr;
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </form>
+
+        <!-- Catatan Teknis / AI Disclaimer -->
+        <div class="ai-disclaimer-note">
+          <div class="disclaimer-icon">💡</div>
+          <div class="disclaimer-text">
+            <strong>Catatan Pengembangan AI:</strong> Fitur analisis bentuk tubuh menggunakan visual AI membutuhkan model/backend khusus (seperti <em>Computer Vision Deep Learning 3D Mesh / Pose Estimation</em>) jika website dikembangkan menjadi produk komersial skala penuh. Pada prototipe ini, rekomendasi dihitung cerdas berdasarkan parameter metrik tubuh dan preferensi gaya fit yang kamu pilih.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. SHOP SECTION ("Shop F:owns")
+       ========================================================================== -->
+  <section class="shop-section" id="shop">
+    <div class="container">
+      
+      <div class="section-header-center">
+        <div class="sub-tag">Katalog Pilihan</div>
+        <h2 class="heading-serif section-title">Shop F:owns</h2>
+        <p class="section-subtitle">
+          Koleksi busana bernuansa netral dengan material berkualitas tinggi, siap disesuaikan dengan ukuran presisi Size Fit.
+        </p>
+      </div>
+
+      <!-- Filter Categories -->
+      <div class="shop-filter-bar">
+        <button class="filter-btn active" onclick="filterProducts('all', this)">Semua Koleksi</button>
+        <button class="filter-btn" onclick="filterProducts('atasan', this)">Atasan</button>
+        <button class="filter-btn" onclick="filterProducts('dress', this)">Dress</button>
+        <button class="filter-btn" onclick="filterProducts('outer', this)">Outerwear</button>
+        <button class="filter-btn" onclick="filterProducts('bawahan', this)">Bawahan</button>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="products-grid">
+        <!-- Products will be dynamically populated by JS with high-fidelity cards -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       8. SECTION TENTANG (ABOUT F:owns)
+       ========================================================================== -->
+  <section class="about-section" id="tentang">
+    <div class="container about-grid">
+      <div class="about-text-content">
+        <div class="sub-tag">Filosofi Kami</div>
+        <h2 class="heading-serif section-title" style="text-align: left; margin-bottom: 20px;">
+          Fashion Made to Fit.
+        </h2>
+        <p class="about-p">
+          F:owns lahir dari permasalahan universal pecinta fashion: kebingungan menentukan ukuran saat berbelanja daring dan tingginya angka retur barang akibat potongan yang tidak pas.
+        </p>
+        <p class="about-p">
+          Kami memadukan estetika minimalis kontemporer bernuansa earthy tones dengan teknologi Size Fit, memberikan kepercayaan diri penuh dalam setiap pembelian tanpa keraguan.
+        </p>
+        <div class="about-quote">
+          “Ketika pakaian dibuat pas dengan proporsi unik tubuhmu, kenyamanan dan keanggunan akan terpancar dengan sendirinya.”
+        </div>
+      </div>
+
+      <div class="about-pillars">
+        <div class="pillar-card">
+          <div class="pillar-icon">🌿</div>
+          <h4 class="pillar-title">Sustainable Living</h4>
+          <p class="pillar-desc">Mengurangi jejak karbon logistik dengan meminimalisir proses retur pakaian akibat salah ukuran.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">✂️</div>
+          <h4 class="pillar-title">Tailored Silhouette</h4>
+          <p class="pillar-desc">Potongan pakaian dirancang inklusif untuk berbagai tipe tubuh dengan siluet modern abadi.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">📐</div>
+          <h4 class="pillar-title">Data-Driven Fit</h4>
+          <p class="pillar-desc">Algoritma ukuran tubuh yang disesuaikan dengan standar proporsi tubuh Asia dan internasional.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">🤍</div>
+          <h4 class="pillar-title">Body Positivity</h4>
+          <p class="pillar-desc">Merayakan keunikan setiap lekuk tubuh tanpa harus terpaku pada standar ukuran yang kaku.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SITE FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand -->
+        <div>
+          <div class="footer-brand-title">F:owns</div>
+          <p class="footer-desc">
+            Fashion Made to Fit — Menghadirkan revolusi belanja pakaian modern yang mengutamakan ketepatan ukuran, estetika minimalis, dan kenyamanan tanpa kompromi.
+          </p>
+        </div>
+
+        <!-- Col 2: Navigasi -->
+        <div>
+          <h4 class="footer-col-title">Navigasi</h4>
+          <ul class="footer-links-list">
+            <li><a href="#size-fit">Fitur Size Fit</a></li>
+            <li><a href="#shop">Koleksi Produk</a></li>
+            <li><a href="#keunggulan">Cara Kerja</a></li>
+            <li><a href="#tentang">Tentang F:owns</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Layanan -->
+        <div>
+          <h4 class="footer-col-title">Bantuan</h4>
+          <ul class="footer-links-list">
+            <li><a href="javascript:void(0)" onclick="alert('Panduan Pengukuran: Siapkan meteran kain, ukur lingkar dada pada titik tertinggi dengan posisi tegak.')">Panduan Meteran</a></li>
+            <li><a href="javascript:void(0)" onclick="alert('Kebijakan Pengembalian: Kami menjamin garansi tukar size jika rekomendasi tidak sesuai.')">Garansi Size Fit</a></li>
+            <li><a href="javascript:void(0)" onclick="alert('Konfirmasi Pengiriman: Pengiriman reguler 2-3 hari kerja ke seluruh Indonesia.')">Pengiriman</a></li>
+            <li><a href="javascript:void(0)" onclick="alert('Kontak CS WhatsApp: +62 812-3456-7890')">Hubungi Kami</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Newsletter -->
+        <div>
+          <h4 class="footer-col-title">Newsletter</h4>
+          <p class="footer-desc" style="margin-bottom: 12px;">
+            Dapatkan inspirasi styling mingguan dan penawaran eksklusif.
+          </p>
+          <div class="footer-newsletter-input">
+            <input type="email" placeholder="Email kamu..." id="newsletter-email">
+            <button type="button" onclick="handleNewsletter(event)">Langganan</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 F:owns (Fashion Made to Fit). Seluruh hak cipta dilindungi.</div>
+        <div>Nuansa: Cream, Beige, Dark Brown • Minimalist Luxury</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       6. SLIDE-OVER SHOPPING CART DRAWER
+       ========================================================================== -->
+  <div class="cart-drawer-backdrop" id="cart-backdrop" onclick="toggleCartDrawer(false)"></div>
+  
+  <div class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-label="Keranjang Belanja">
+    <div class="cart-drawer-header">
+      <div class="cart-title">
+        <span>🛍 Keranjang</span>
+        <span class="sub-tag" id="drawer-count-badge" style="margin: 0; padding: 2px 10px;">0 item</span>
+      </div>
+      <button type="button" class="cart-close-btn" onclick="toggleCartDrawer(false)" aria-label="Tutup Keranjang">
+        &times;
+      </button>
+    </div>
+
+    <!-- Items List Body -->
+    <div class="cart-items-body" id="cart-items-body">
+      <!-- Injected by JavaScript -->
+    </div>
+
+    <!-- Summary Footer -->
+    <div class="cart-drawer-footer" id="cart-drawer-footer">
+      <div class="cart-summary-line">
+        <span>Subtotal Produk</span>
+        <span id="cart-subtotal-price">Rp0</span>
+      </div>
+      <div class="cart-summary-line">
+        <span>Estimasi Ongkir</span>
+        <span style="color: #2E7D32; font-weight: 600;">GRATIS (Promo)</span>
+      </div>
+      <div class="cart-summary-total">
+        <span>Total Pembayaran</span>
+        <span class="cart-total-price" id="cart-total-price">Rp0</span>
+      </div>
+      <button type="button" class="btn btn-primary" id="btn-checkout-step" style="width: 100%; padding: 15px;" onclick="openCheckoutModal()">
+        Lanjut Checkout &rarr;
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       7. CHECKOUT DEMO MODAL
+       ========================================================================== -->
+  <div class="modal-backdrop" id="checkout-modal" role="dialog" aria-modal="true">
+    <div class="modal-container">
+      
+      <!-- Normal Checkout View -->
+      <div id="checkout-view-form">
+        <div class="modal-header">
+          <div class="modal-title">Ringkasan &amp; Checkout</div>
+          <button type="button" class="modal-close-btn" onclick="closeCheckoutModal()">&times;</button>
+        </div>
+
+        <div class="checkout-order-summary-box">
+          <div class="summary-heading">Pesanan Anda:</div>
+          <div id="checkout-items-summary-list">
+            <!-- Populated by JS -->
+          </div>
+          <div style="border-top: 1px dashed var(--border-medium); margin-top: 10px; padding-top: 10px; display: flex; justify-content: space-between; font-weight: 800;">
+            <span>Total Akhir:</span>
+            <span style="color: var(--color-brown-accent);" id="checkout-final-total">Rp0</span>
+          </div>
+        </div>
+
+        <form id="checkout-form" onsubmit="handleConfirmOrder(event)">
+          <div class="checkout-form-grid">
+            <div class="checkout-field-full">
+              <label class="input-label">Nama Lengkap</label>
+              <input type="text" class="checkout-input" required placeholder="Contoh: Claudia Amanda" value="Claudia Amanda">
+            </div>
+
+            <div>
+              <label class="input-label">Nomor WhatsApp</label>
+              <input type="tel" class="checkout-input" required placeholder="081234567890" value="081234567890">
+            </div>
+
+            <div>
+              <label class="input-label">Email</label>
+              <input type="email" class="checkout-input" required placeholder="nama@email.com" value="claudia@example.com">
+            </div>
+
+            <div class="checkout-field-full">
+              <label class="input-label">Alamat Lengkap Pengiriman</label>
+              <textarea class="checkout-input" rows="2" required placeholder="Jalan, Nomor Rumah, Kecamatan, Kota...">Jl. Senopati No. 42, Kebayoran Baru, Jakarta Selatan</textarea>
+            </div>
+
+            <div class="checkout-field-full">
+              <label class="input-label">Pilihan Metode Pembayaran</label>
+              <div class="payment-options-grid">
+                <div class="payment-chip selected" onclick="selectPayment(this, 'QRIS Instant')">QRIS Instant</div>
+                <div class="payment-chip" onclick="selectPayment(this, 'BCA Virtual Account')">BCA VA</div>
+                <div class="payment-chip" onclick="selectPayment(this, 'Mandiri VA')">Mandiri VA</div>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px;">
+            Konfirmasi &amp; Bayar Sekarang
+          </button>
+        </form>
+      </div>
+
+      <!-- Success Confirmation View -->
+      <div class="order-success-box" id="checkout-view-success">
+        <div class="success-check-icon">✓</div>
+        <h3 class="heading-serif" style="font-size: 1.6rem; margin-bottom: 8px;">Pesanan Berhasil Diterima!</h3>
+        <p style="font-size: 0.92rem; color: var(--color-text-muted); margin-bottom: 16px;">
+          Terima kasih telah mempercayakan ukuran presisi Anda kepada F:owns. Konfirmasi pesanan telah dikirim ke WhatsApp Anda.
+        </p>
+        
+        <div style="background: var(--color-white); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 16px; margin-bottom: 24px; text-align: left; font-size: 0.85rem;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+            <span style="color: var(--color-text-subtle);">Nomor Pesanan:</span>
+            <strong id="success-order-id">#FOWNS-82914</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+            <span style="color: var(--color-text-subtle);">Metode Pembayaran:</span>
+            <strong id="success-payment-method">QRIS Instant</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: var(--color-text-subtle);">Status:</span>
+            <span style="color: #2E7D32; font-weight: 700;">Lunas (Demo Berhasil)</span>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="finishOrderAndReset()">
+          Selesai &amp; Belanja Lagi
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Element -->
+  <div class="toast-notice" id="toast-notice">
+    <span id="toast-icon">✓</span>
+    <span id="toast-text">Notifikasi</span>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT LOGIC & STATE MANAGEMENT
+       ========================================================================== -->
+  <script>
+    /* Global Application State */
+    const FOWNS = {
+      recommendedSize: null, // XS, S, M, L, XL, XXL
+      userPhotos: {
+        front: null,
+        back: null,
+        right: null,
+        left: null
+      },
+      selectedPaymentMethod: 'QRIS Instant',
+      
+      // Sample Product Catalog as specified:
+      // 1. F:owns Essential Top — Rp149.000
+      // 2. F:owns Everyday Dress — Rp229.000
+      // 3. F:owns Relaxed Outer — Rp279.000
+      // + 4. F:owns Tailored Trousers — Rp199.000 (Complementary classic item)
+      products: [
+        {
+          id: 'prod-top',
+          name: 'F:owns Essential Top',
+          category: 'atasan',
+          price: 149000,
+          image: 'assets/images/essential_top.jpg',
+          fallbackImage: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&auto=format&fit=crop&q=80',
+          tag: 'Best Seller',
+          description: 'Atasan rajut halus bertekstur ribbed bernuansa cream lembut, lentur dan adem untuk gaya harian.',
+          availableSizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+          selectedSize: 'M'
+        },
+        {
+          id: 'prod-dress',
+          name: 'F:owns Everyday Dress',
+          category: 'dress',
+          price: 229000,
+          image: 'assets/images/everyday_dress.jpg',
+          fallbackImage: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&auto=format&fit=crop&q=80',
+          tag: 'Favorit',
+          description: 'Wrap dress berpotongan A-line dengan siluet feminin dan tali pinggang fleksibel berwarna natural beige.',
+          availableSizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+          selectedSize: 'M'
+        },
+        {
+          id: 'prod-outer',
+          name: 'F:owns Relaxed Outer',
+          category: 'outer',
+          price: 279000,
+          image: 'assets/images/relaxed_outer.jpg',
+          fallbackImage: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&auto=format&fit=crop&q=80',
+          tag: 'Signature Outer',
+          description: 'Blazer santai berwarna dark espresso dengan potongan clean dan bahan wool blend berkualitas tinggi.',
+          availableSizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+          selectedSize: 'M'
+        },
+        {
+          id: 'prod-pants',
+          name: 'F:owns Tailored Trousers',
+          category: 'bawahan',
+          price: 199000,
+          image: 'assets/images/tailored_pants.jpg',
+          fallbackImage: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&auto=format&fit=crop&q=80',
+          tag: 'New Release',
+          description: 'Celana kulot pleated berpotongan high-waist yang elegan, memanjangkan siluet kaki secara natural.',
+          availableSizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+          selectedSize: 'M'
+        }
+      ],
+
+      // Shopping Cart State
+      cart: []
+    };
+
+    /* Utility: Format Rupiah */
+    function formatRupiah(amount) {
+      return 'Rp' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
+
+    /* ==========================================================================
+       INITIALIZATION
+       ========================================================================== */
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProductsGrid();
+      setupMobileMenu();
+      setupDragAndDrop();
+    });
+
+    /* Mobile Menu Toggle */
+    function setupMobileMenu() {
+      const btn = document.getElementById('mobile-menu-btn');
+      const drawer = document.getElementById('mobile-nav-drawer');
+      const links = document.querySelectorAll('.mobile-nav-item');
+
+      btn.addEventListener('click', () => {
+        drawer.classList.toggle('active');
+      });
+
+      links.forEach(link => {
+        link.addEventListener('click', () => {
+          drawer.classList.remove('active');
+        });
+      });
+    }
+
+    /* ==========================================================================
+       4. SIZE FIT RECOMMENDATION LOGIC
+       ==========================================================================
+       Demo Logic per requirements:
+       - < 84 cm  = XS
+       - 84–89 cm = S
+       - 90–97 cm = M
+       - 98–105 cm = L
+       - 106–113 cm = XL
+       - ≥ 114 cm = XXL
+       
+       Fit Adjustment:
+       - Loose: shift +1 size
+       - Fitted: shift -1 size
+       - Regular: keep base
+       Bounded by XS and XXL
+       ========================================================================== */
+    const SIZES_ORDER = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+
+    function calculateSizeRecommendation(bustCm, fitPreference) {
+      let baseSize = 'M';
+
+      if (bustCm < 84) {
+        baseSize = 'XS';
+      } else if (bustCm >= 84 && bustCm <= 89) {
+        baseSize = 'S';
+      } else if (bustCm >= 90 && bustCm <= 97) {
+        baseSize = 'M';
+      } else if (bustCm >= 98 && bustCm <= 105) {
+        baseSize = 'L';
+      } else if (bustCm >= 106 && bustCm <= 113) {
+        baseSize = 'XL';
+      } else {
+        baseSize = 'XXL';
+      }
+
+      let currentIndex = SIZES_ORDER.indexOf(baseSize);
+      let adjustedIndex = currentIndex;
+      let styleModifierText = 'Regular (0 penyesuaian)';
+
+      if (fitPreference === 'loose') {
+        adjustedIndex = Math.min(currentIndex + 1, SIZES_ORDER.length - 1);
+        styleModifierText = 'Loose (+1 tingkat ukuran lebih longgar)';
+      } else if (fitPreference === 'fitted') {
+        adjustedIndex = Math.max(currentIndex - 1, 0);
+        styleModifierText = 'Fitted (-1 tingkat ukuran lebih pas tubuh)';
+      }
+
+      const finalSize = SIZES_ORDER[adjustedIndex];
+
+      return {
+        baseSize,
+        finalSize,
+        fitPreference,
+        styleModifierText
+      };
+    }
+
+    /* Handle Form Submission for Size Fit */
+    function handleSizeFitSubmit(e) {
+      e.preventDefault();
+
+      const bust = parseFloat(document.getElementById('input-bust').value) || 92;
+      const height = parseFloat(document.getElementById('input-height').value) || 165;
+      const weight = parseFloat(document.getElementById('input-weight').value) || 55;
+      const waist = parseFloat(document.getElementById('input-waist').value) || 72;
+      const hips = parseFloat(document.getElementById('input-hips').value) || 96;
+
+      const fitRadio = document.querySelector('input[name="fit_preference"]:checked');
+      const fitPref = fitRadio ? fitRadio.value : 'regular';
+
+      const result = calculateSizeRecommendation(bust, fitPref);
+      FOWNS.recommendedSize = result.finalSize;
+
+      // Update UI elements
+      const resultBox = document.getElementById('sizefit-result-box');
+      const sizePill = document.getElementById('recommended-size-pill');
+      const explanationText = document.getElementById('result-explanation-text');
+      const specBase = document.getElementById('spec-base-size');
+      const specStyle = document.getElementById('spec-style-mod');
+      const specPhoto = document.getElementById('spec-photo-status');
+
+      // Count uploaded photos
+      let photosUploaded = 0;
+      Object.keys(FOWNS.userPhotos).forEach(k => {
+        if (FOWNS.userPhotos[k]) photosUploaded++;
+      });
+
+      sizePill.textContent = result.finalSize;
+      specBase.textContent = result.baseSize;
+      specStyle.textContent = result.styleModifierText;
+      specPhoto.textContent = `${photosUploaded}/4 Terunggah`;
+
+      explanationText.innerHTML = `Berdasarkan lingkar dada <strong>${bust} cm</strong> dengan preferensi gaya <strong>${fitPref.toUpperCase()}</strong>, sistem F:owns menganalisis bahwa <strong>Size ${result.finalSize}</strong> adalah ukuran paling sempurna untuk postur tubuhmu (Tinggi: ${height}cm, Berat: ${weight}kg).`;
+
+      // Display result box with smooth animation
+      resultBox.style.display = 'block';
+
+      // Update hero mockup preview as well!
+      const heroSize = document.getElementById('hero-badge-size');
+      const heroMeta = document.getElementById('hero-badge-meta');
+      if (heroSize) heroSize.textContent = `Size ${result.finalSize}`;
+      if (heroMeta) heroMeta.textContent = `• Lingkar Dada ${bust} cm (Gaya ${fitPref})`;
+
+      showToast(`✨ Rekomendasi dihitung: Size ${result.finalSize}`);
+    }
+
+    /* Apply Recommended Size to all Shop products */
+    function applySizeToShop() {
+      if (!FOWNS.recommendedSize) {
+        showToast('⚠️ Silakan lakukan perhitungan Size Fit terlebih dahulu.');
+        return;
+      }
+
+      FOWNS.products.forEach(p => {
+        if (p.availableSizes.includes(FOWNS.recommendedSize)) {
+          p.selectedSize = FOWNS.recommendedSize;
+        }
+      });
+
+      renderProductsGrid();
+      showToast(`🏷️ Ukuran Size ${FOWNS.recommendedSize} telah diterapkan ke semua produk di toko!`);
+
+      // Smooth scroll to shop section
+      const shopEl = document.getElementById('shop');
+      if (shopEl) {
+        shopEl.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    /* ==========================================================================
+       PHOTO UPLOAD & 4-ANGLE PREVIEW HANDLING
+       ========================================================================== */
+    function handlePhotoUpload(event, angle) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        setPhotoPreview(angle, e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function setPhotoPreview(angle, src) {
+      FOWNS.userPhotos[angle] = src;
+      const previewWrapper = document.getElementById(`preview-wrapper-${angle}`);
+      const previewImg = document.getElementById(`preview-img-${angle}`);
+      
+      if (previewWrapper && previewImg) {
+        previewImg.src = src;
+        previewWrapper.style.display = 'block';
+      }
+
+      showToast(`📸 Foto sudut ${angle.toUpperCase()} berhasil dimuat.`);
+    }
+
+    function removePhoto(angle, event) {
+      if (event) event.stopPropagation();
+      FOWNS.userPhotos[angle] = null;
+      
+      const previewWrapper = document.getElementById(`preview-wrapper-${angle}`);
+      const previewImg = document.getElementById(`preview-img-${angle}`);
+      const fileInput = document.querySelector(`#slot-${angle} .slot-input-file`);
+      
+      if (previewWrapper) previewWrapper.style.display = 'none';
+      if (previewImg) previewImg.src = '';
+      if (fileInput) fileInput.value = '';
+
+      showToast(`Foto ${angle.toUpperCase()} dihapus.`);
+    }
+
+    /* Drag and Drop Support for Photo Slots */
+    function setupDragAndDrop() {
+      const slots = document.querySelectorAll('.photo-slot');
+      slots.forEach(slot => {
+        const angle = slot.getAttribute('data-slot');
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+          slot.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            slot.classList.add('dragover');
+          });
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+          slot.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            slot.classList.remove('dragover');
+          });
+        });
+
+        slot.addEventListener('drop', (e) => {
+          const dt = e.dataTransfer;
+          const files = dt.files;
+          if (files && files.length > 0) {
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+              setPhotoPreview(angle, evt.target.result);
+            };
+            reader.readAsDataURL(files[0]);
+          }
+        });
+      });
+    }
+
+    /* Demo Quick-Fill Photos (Minimalist SVG Silhouettes for instant testing) */
+    function loadDemoPhotos() {
+      const createSilhouette = (label, color) => {
+        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400">
+          <rect width="100%" height="100%" fill="#F5EFEB"/>
+          <circle cx="150" cy="80" r="34" fill="${color}" opacity="0.85"/>
+          <path d="M100 135 C100 120, 200 120, 200 135 L215 250 L85 250 Z" fill="${color}" opacity="0.75"/>
+          <rect x="110" y="250" width="35" height="120" rx="6" fill="${color}" opacity="0.65"/>
+          <rect x="155" y="250" width="35" height="120" rx="6" fill="${color}" opacity="0.65"/>
+          <text x="150" y="385" font-family="sans-serif" font-size="14" font-weight="bold" fill="#2C211A" text-anchor="middle">DEMO: ${label}</text>
+        </svg>`;
+        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+      };
+
+      setPhotoPreview('front', createSilhouette('TAMPAK DEPAN', '#B48D6C'));
+      setPhotoPreview('back', createSilhouette('TAMPAK BELAKANG', '#8C6647'));
+      setPhotoPreview('right', createSilhouette('SAMAPING KANAN', '#9A714C'));
+      setPhotoPreview('left', createSilhouette('SAMPING KIRI', '#736458'));
+
+      showToast('⚡ 4 Foto Demo Postur berhasil dimuat!');
+    }
+
+    /* ==========================================================================
+       5. SHOP SECTION & PRODUCT RENDERING
+       ========================================================================== */
+    function renderProductsGrid(categoryFilter = 'all') {
+      const container = document.getElementById('products-grid');
+      if (!container) return;
+
+      const filtered = categoryFilter === 'all' 
+        ? FOWNS.products 
+        : FOWNS.products.filter(p => p.category === categoryFilter);
+
+      container.innerHTML = filtered.map(product => {
+        const hasRecommendation = FOWNS.recommendedSize !== null;
+        
+        return `
+          <div class="product-card" data-id="${product.id}">
+            <div class="product-media">
+              <span class="product-badge-tag">${product.tag}</span>
+              <img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.src='${product.fallbackImage}';">
+              <div class="product-fit-notice ${hasRecommendation ? 'show' : ''}">
+                <span>✨ Ukuran Pas Rekomendasi: <strong>${FOWNS.recommendedSize || 'M'}</strong></span>
+              </div>
+            </div>
+
+            <div class="product-details">
+              <div class="product-category">${product.category}</div>
+              <h3 class="product-name">${product.name}</h3>
+              <div class="product-price">${formatRupiah(product.price)}</div>
+
+              <div class="size-selector-label">
+                <span>Pilih Ukuran:</span>
+                <span class="size-recommended-text" style="${hasRecommendation ? 'display:inline;' : ''}">
+                  ${hasRecommendation ? `★ Size Fit: ${FOWNS.recommendedSize}` : ''}
+                </span>
+              </div>
+
+              <div class="product-sizes-row">
+                ${product.availableSizes.map(sz => {
+                  const isSelected = product.selectedSize === sz;
+                  const isRecommended = FOWNS.recommendedSize === sz;
+                  return `
+                    <button type="button" 
+                      class="size-chip-btn ${isSelected ? 'selected' : ''} ${isRecommended ? 'recommended' : ''}" 
+                      onclick="selectProductSize('${product.id}', '${sz}')"
+                      title="${isRecommended ? 'Rekomendasi Size Fit' : ''}">
+                      ${sz}
+                    </button>
+                  `;
+                }).join('')}
+              </div>
+
+              <div class="product-card-actions">
+                <button type="button" class="btn-add-cart" onclick="addToCart('${product.id}')">
+                  <span>+ Keranjang</span>
+                </button>
+                <button type="button" class="btn-buy-now" onclick="buyNow('${product.id}')">
+                  <span>Beli</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function selectProductSize(productId, size) {
+      const prod = FOWNS.products.find(p => p.id === productId);
+      if (prod) {
+        prod.selectedSize = size;
+        renderProductsGrid();
+      }
+    }
+
+    function filterProducts(category, buttonEl) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      if (buttonEl) buttonEl.classList.add('active');
+      renderProductsGrid(category);
+    }
+
+    /* ==========================================================================
+       6. SHOPPING CART LOGIC & DRAWER
+       ========================================================================== */
+    function toggleCartDrawer(open) {
+      const drawer = document.getElementById('cart-drawer');
+      const backdrop = document.getElementById('cart-backdrop');
+      
+      if (open) {
+        drawer.classList.add('active');
+        backdrop.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      } else {
+        drawer.classList.remove('active');
+        backdrop.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    document.getElementById('open-cart-btn').addEventListener('click', () => {
+      toggleCartDrawer(true);
+    });
+
+    function addToCart(productId) {
+      const product = FOWNS.products.find(p => p.id === productId);
+      if (!product) return;
+
+      const size = product.selectedSize || 'M';
+      
+      // Check if item with same ID and same SIZE is already in cart
+      const existing = FOWNS.cart.find(item => item.id === product.id && item.size === size);
+
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        FOWNS.cart.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          image: product.image,
+          fallbackImage: product.fallbackImage,
+          size: size,
+          quantity: 1
+        });
+      }
+
+      updateCartUI();
+      showToast(`🛍 Ditambahkan ke keranjang: ${product.name} (${size})`);
+    }
+
+    function buyNow(productId) {
+      addToCart(productId);
+      toggleCartDrawer(true);
+    }
+
+    function updateCartItemQty(index, delta) {
+      if (!FOWNS.cart[index]) return;
+      FOWNS.cart[index].quantity += delta;
+      if (FOWNS.cart[index].quantity <= 0) {
+        FOWNS.cart.splice(index, 1);
+      }
+      updateCartUI();
+    }
+
+    function removeCartItem(index) {
+      if (FOWNS.cart[index]) {
+        const removed = FOWNS.cart.splice(index, 1)[0];
+        updateCartUI();
+        showToast(`Item ${removed.name} dihapus dari keranjang.`);
+      }
+    }
+
+    function updateCartUI() {
+      const cartCountBadge = document.getElementById('cart-badge-count');
+      const drawerCountBadge = document.getElementById('drawer-count-badge');
+      const cartItemsContainer = document.getElementById('cart-items-body');
+      const subtotalEl = document.getElementById('cart-subtotal-price');
+      const totalEl = document.getElementById('cart-total-price');
+      const checkoutBtn = document.getElementById('btn-checkout-step');
+
+      const totalItemsCount = FOWNS.cart.reduce((sum, item) => sum + item.quantity, 0);
+      const subtotalAmount = FOWNS.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+      // Update badge counts
+      if (cartCountBadge) cartCountBadge.textContent = totalItemsCount;
+      if (drawerCountBadge) drawerCountBadge.textContent = `${totalItemsCount} produk`;
+
+      // Render cart items or empty state
+      if (FOWNS.cart.length === 0) {
+        cartItemsContainer.innerHTML = `
+          <div class="cart-empty-state">
+            <div class="empty-cart-icon">🛒</div>
+            <div class="empty-cart-title">Keranjang Kamu Masih Kosong</div>
+            <p class="empty-cart-desc">Yuk coba fitur Size Fit untuk menemukan pakaian dengan ukuran yang pas dan mulailah berbelanja.</p>
+            <a href="#shop" class="btn btn-secondary" onclick="toggleCartDrawer(false)">Jelajahi Produk</a>
+          </div>
+        `;
+        if (checkoutBtn) checkoutBtn.disabled = true;
+        if (subtotalEl) subtotalEl.textContent = 'Rp0';
+        if (totalEl) totalEl.textContent = 'Rp0';
+        return;
+      }
+
+      if (checkoutBtn) checkoutBtn.disabled = false;
+
+      cartItemsContainer.innerHTML = FOWNS.cart.map((item, idx) => `
+        <div class="cart-item-card">
+          <div class="cart-item-thumb">
+            <img src="${item.image}" alt="${item.name}" onerror="this.onerror=null; this.src='${item.fallbackImage}';">
+          </div>
+          <div class="cart-item-info">
+            <h4 class="cart-item-name">${item.name}</h4>
+            <div class="cart-item-size-badge">Ukuran: ${item.size}</div>
+            <div class="cart-item-price">${formatRupiah(item.price)}</div>
+          </div>
+          <div class="cart-item-controls">
+            <div class="cart-item-qty">
+              <button type="button" class="qty-btn" onclick="updateCartItemQty(${idx}, -1)" aria-label="Kurang">&minus;</button>
+              <span class="qty-number">${item.quantity}</span>
+              <button type="button" class="qty-btn" onclick="updateCartItemQty(${idx}, 1)" aria-label="Tambah">&plus;</button>
+            </div>
+            <button type="button" class="cart-item-delete" onclick="removeCartItem(${idx})">
+              <span>Hapus</span>
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      if (subtotalEl) subtotalEl.textContent = formatRupiah(subtotalAmount);
+      if (totalEl) totalEl.textContent = formatRupiah(subtotalAmount);
+    }
+
+    /* ==========================================================================
+       7. CHECKOUT PROTOTYPE & ORDER SUMMARY
+       ========================================================================== */
+    function openCheckoutModal() {
+      if (FOWNS.cart.length === 0) {
+        showToast('Keranjang belanja kosong!');
+        return;
+      }
+
+      toggleCartDrawer(false);
+
+      const modal = document.getElementById('checkout-modal');
+      const summaryList = document.getElementById('checkout-items-summary-list');
+      const finalTotalEl = document.getElementById('checkout-final-total');
+
+      const subtotal = FOWNS.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+      summaryList.innerHTML = FOWNS.cart.map(item => `
+        <div class="checkout-item-row">
+          <span>${item.name} (Ukuran: <strong>${item.size}</strong>) &times; ${item.quantity}</span>
+          <strong>${formatRupiah(item.price * item.quantity)}</strong>
+        </div>
+      `).join('');
+
+      finalTotalEl.textContent = formatRupiah(subtotal);
+
+      // Reset views
+      document.getElementById('checkout-view-form').style.display = 'block';
+      document.getElementById('checkout-view-success').style.display = 'none';
+
+      modal.classList.add('active');
+    }
+
+    function closeCheckoutModal() {
+      const modal = document.getElementById('checkout-modal');
+      modal.classList.remove('active');
+    }
+
+    function selectPayment(el, method) {
+      document.querySelectorAll('.payment-chip').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      FOWNS.selectedPaymentMethod = method;
+    }
+
+    function handleConfirmOrder(e) {
+      e.preventDefault();
+
+      // Simulated Order ID
+      const orderId = '#FOWNS-' + Math.floor(10000 + Math.random() * 90000);
+      document.getElementById('success-order-id').textContent = orderId;
+      document.getElementById('success-payment-method').textContent = FOWNS.selectedPaymentMethod;
+
+      // Switch view
+      document.getElementById('checkout-view-form').style.display = 'none';
+      document.getElementById('checkout-view-success').style.display = 'block';
+
+      // Clear Cart
+      FOWNS.cart = [];
+      updateCartUI();
+    }
+
+    function finishOrderAndReset() {
+      closeCheckoutModal();
+      showToast('🎉 Pesanan selesai! Terima kasih telah berbelanja di F:owns.');
+    }
+
+    /* Newsletter Demo */
+    function handleNewsletter(e) {
+      e.preventDefault();
+      const input = document.getElementById('newsletter-email');
+      if (input && input.value) {
+        showToast('📬 Terima kasih telah berlangganan newsletter F:owns!');
+        input.value = '';
+      }
+    }
+
+    /* Toast Notification Helper */
+    let toastTimeout = null;
+    function showToast(message) {
+      const toast = document.getElementById('toast-notice');
+      const text = document.getElementById('toast-text');
+      if (!toast || !text) return;
+
+      text.textContent = message;
+      toast.classList.add('show');
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+
+    /* Close on Escape key */
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        toggleCartDrawer(false);
+        closeCheckoutModal();
+      }
+    });
+  </script>
+</body>
+</html>
